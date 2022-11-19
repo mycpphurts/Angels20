@@ -1,5 +1,5 @@
 # Angels20
-#### A tool made in python for self learning purposes and pen-testing
+#### A buncha tools made in python for self learning purposes and pen-testing
 
 # *DISCLAIMER*
 
@@ -22,4 +22,4 @@ $ git clone https://github.com/mycpphurts/Angels20.git
 
 # How to use this
 
-`cd` into the repository and (... to be added soon LMAO) 
+Just use the stuff in /src/tools
