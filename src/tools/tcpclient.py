@@ -1,3 +1,5 @@
+# TCP client example stuff
+
 # Imports
 import socket
 
