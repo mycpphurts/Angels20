@@ -93,7 +93,7 @@ def client_handler(client_socket):
                 file_buffer += data
 
         # Taking bytes and try to write them out
-        # Add stuff
+        # Add stuff (yeah)
 
 def server_loop():
     global target
