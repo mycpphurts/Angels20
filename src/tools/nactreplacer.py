@@ -93,8 +93,41 @@ def client_handler(client_socket):
                 file_buffer += data
 
         # Taking bytes and try to write them out
-        # Add stuff
+        try:
+            file_descriptor = open(upload_destination,"wb")
+            file_descriptor.write(file_buffer)
+            file_descriptor.close()
 
+            # Acknowledge that the file was written
+            client_socket.send("Successfully saved file to %s\r\n" % upload_destination)
+        except:
+            client_socket.send("Failed to save file to %s\r\n" % upload_destination)
+
+    # Check for command execution
+    if len(execute):
+
+        # Run the damn thing
+        output = run_command(execute)
+
+        client_socket.send(output)
+
+    # Going into another loop if a command shell was requested
+    if command:
+        while True:
+            # Show a simple prompt
+            client_socket.send("<BHP:#> ")
+
+            # Receiving until a linefeed is seen (enter key)
+            cmd_buffer = ""
+            while "\n" not in cmd_buffer:
+                cmd_buffer += client_socket.recv(1024)
+            
+            # Send back command output
+            response = run_command(cmd_buffer)
+
+            # Send back response
+            client_socket.send(response)
+        
 def server_loop():
     global target
 
