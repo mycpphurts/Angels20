@@ -8,8 +8,7 @@ This code was made for educational purposes only, and I highly discourage anyone
 
 # Known issues / Missing stuff:
 
-1. Unifinished code @ ./src/tools/ncatreplacer.py
-    - It was 2AM I had 30 Min of sleep last night, and I just wanna commit as a backup :pain:
+- Nothing yet(?)
 
 # Cloning this repository:
 
