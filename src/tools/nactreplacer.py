@@ -62,7 +62,7 @@ def client_sender(buffer):
             print(response),
 
             # Wait for more input
-            buffer = raw_input("")
+            buffer = input("")
             buffer += "\n"
 
             # Send that shit
@@ -72,12 +72,60 @@ def client_sender(buffer):
         print("[*] Exception encountered, getting the fuck out")
         client.close()
 
+def client_handler(client_socket):
+    global upload
+    global execute
+    global command
+
+    # Checks for upload
+    if len(upload_destination):
+
+        # Read in all of the bytes and write our destination
+        file_buffer = ""
+
+        # Keep reading data until none is available
+        while True:
+            data = client_socket.recv(1024)
+
+            if not data:
+                break
+            else:
+                file_buffer += data
+
+        # Taking bytes and try to write them out
+        # Add stuff
+
 def server_loop():
     global target
 
-    # Finish this shit next time u open VSC ffs
-    # I'm tired as fuck
-    # Cybersec is pain istg
+    # if no target is defined -> listen on all interfaces
+    if not len(target):
+        target = "0.0.0.0"
+
+    server = socket.socket(socket.AF_INET, socket.SOCK_STEAM)
+    server.bind((target,port))
+
+    server.listen(5)
+
+    while True:
+        client_socket, addr = server.accept()
+
+        # Spin off a thread to handle the new client
+        client_thread = threading.Thread(target=client_handler, args=(client_socket,))
+        client_thread.start()
+
+def run_command(command):
+    # Trim the newline
+    command = command.rstrip()
+
+    # Runs the command and gets the output back
+    try:
+        output = subprocess.check_output(command, stderr=subprocess.STDOUT, shell=True)
+    except:
+        output = "Failed to execute command.\r\n"
+
+    # Sends output back
+    return output
 
 def main():
     global listen
