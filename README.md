@@ -1,4 +1,5 @@
 # Angels20
+### This project is discontinued and archived, feel free to source it to your heart's content.
 #### A buncha tools made in python for self learning purposes and pen-testing
 
 # *DISCLAIMER*
